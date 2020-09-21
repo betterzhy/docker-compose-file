@@ -1,0 +1,30 @@
+version: '3.2'
+services:
+  redis:
+    image: redis:5.0
+    command: redis-server --requirepass mongs123
+    ports:
+      - 6379:6379
+    environment:
+      - TZ="Asia/Shanghai"
+    volumes:
+      - type: volume
+        source: redis
+        target: /data
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - type: volume
+        source: mysql
+        target: /var/lib/mysql/
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mongs123
+      TZ: Asia/Shanghai
+
+
+volumes:
+  mysql: 
+  redis: 

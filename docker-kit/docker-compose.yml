@@ -24,7 +24,20 @@ services:
       MYSQL_ROOT_PASSWORD: mongs123
       TZ: Asia/Shanghai
 
+  rabbit:
+    image: rabbitmq:3-management
+    volumes:
+      - type: volume
+        source: rabbit
+        target: /var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
 
 volumes:
   mysql: 
   redis: 
+  rabbit:

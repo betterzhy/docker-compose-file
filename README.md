@@ -22,3 +22,8 @@
 
    - `elastic`
    - `mongs123`
+   
+   rabbitmq:
+   
+   - `rabbit`
+   - `mongs123`

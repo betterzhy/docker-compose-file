@@ -36,8 +36,20 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=rabbit
       - RABBITMQ_DEFAULT_PASS=mongs123
+  mongo:
+    image: mongo:4.2.5
+    volumes:
+      - type: volume
+        source: mongo
+        target: /data/db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongs123
 
 volumes:
   mysql: 
   redis: 
   rabbit:
+  mongo:

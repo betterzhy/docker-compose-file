@@ -1,0 +1,55 @@
+version: '3.2'
+services:
+  redis:
+    image: redis:5.0
+    command: redis-server --requirepass mongs123
+    ports:
+      - 6379:6379
+    environment:
+      - TZ="Asia/Shanghai"
+    volumes:
+      - type: volume
+        source: redis
+        target: /data
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - type: volume
+        source: mysql
+        target: /var/lib/mysql/
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mongs123
+      TZ: Asia/Shanghai
+
+  rabbit:
+    image: rabbitmq:3-management
+    volumes:
+      - type: volume
+        source: rabbit
+        target: /var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=ojinx
+      - RABBITMQ_DEFAULT_PASS=mongs123
+  mongo:
+    image: mongo:4.2.5
+    volumes:
+      - type: volume
+        source: mongo
+        target: /data/db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ojinx
+      MONGO_INITDB_ROOT_PASSWORD: mongs123
+
+volumes:
+  mysql: 
+  redis: 
+  rabbit:
+  mongo:

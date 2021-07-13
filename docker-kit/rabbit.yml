@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  rabbit:
+    image: rabbitmq:3-management
+    volumes:
+      - type: volume
+        source: rabbit
+        target: /var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=root
+      - RABBITMQ_DEFAULT_PASS=mongs123
+
+volumes:
+  rabbit:
